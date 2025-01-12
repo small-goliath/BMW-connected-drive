@@ -1,13 +1,9 @@
-import logging
-from typing import Callable, Awaitable
-from bimmer_connected.models import MyBMWRemoteServiceError
 from bimmer_connected.vehicle.fuel_and_battery import ChargingState
+from bimmer_connected.vehicle.doors_windows import LockState
 from fastapi import APIRouter
 from app import bmw_account
 
 router = APIRouter()
-
-# TODO: 차량 각종 상태 조회
 
 chargingStatusMap = {
     ChargingState.CHARGING: "충전 중이야.",
@@ -22,9 +18,18 @@ chargingStatusMap = {
     ChargingState.WAITING_FOR_CHARGING: "충전 대기 중이야.",
     ChargingState.TARGET_REACHED: "충전 목표치에 도달했어.",
     ChargingState.UNKNOWN: "알 수 없어."
-    }
+}
+
+doorsStatusMap = {
+    LockState.LOCKED: "모든 문이 잠겨있어.",
+    LockState.SECURED: "모든 문이 잠겨있어.",
+    LockState.SELECTIVE_LOCKED: "특정 문이 잠겨있지 않아.",
+    LockState.PARTIALLY_LOCKED: "특정 문이 잠겨있지 않아.",
+    LockState.UNLOCKED: "모든 문이 잠겨있지 않아.",
+    LockState.UNKNOWN: "문의 상태를 알 수 없어."
+}
     
-@router.get("/", response_model=str)
+@router.get("/charging", response_model=str)
 async def lock_the_door() -> str:
     await bmw_account.vehicle.get_vehicle_state()
 
@@ -34,3 +39,17 @@ async def lock_the_door() -> str:
     target_percent = bmw_account.vehicle.fuel_and_battery.charging_target
 
     return f"목표치는 {target_percent} 퍼센트이고 지금 충전 상태는 {status}"
+
+
+@router.get("/doors-windows", response_model=str)
+async def lock_the_door() -> str:
+    await bmw_account.vehicle.get_vehicle_state()
+
+    doors_status = await bmw_account.vehicle.doors_and_windows.door_lock_state
+    doors_status = doorsStatusMap.get(doors_status, "문의 상태를 알 수 없어.")
+
+    is_close_windows = await bmw_account.vehicle.doors_and_windows.all_windows_closed()
+    windows_status = "창문과 선루프가 닫혀있고" if is_close_windows else "창문 혹은 선루프가 열려있고"
+
+    return f"{windows_status} 차량의 {doors_status}"
+
