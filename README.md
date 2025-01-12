@@ -87,8 +87,16 @@ pip install -r requirements.txt
 ### 4. 서버 실행
 
 ```bash
+tmux new -s mybmw
+source .venv/bin/activate
 cd app
-uvicorn main:app --reload --env-file ../.env --log-config ../log.ini
+uvicorn main:app --env-file ../.env --log-config ../log.ini
+```
+
+### 5. 서버 실행 확인
+
+```bash
+tmux ls
 ```
 
 ## 참고 자료
