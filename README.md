@@ -14,6 +14,10 @@
 - **충전 시작:** `POST /api/remote-control/charging`
 - **충전 정지:** `DELETE /api/remote-control/charging`
 - **목표 충전량(%):** `PATCH /api/remote-control/charging-settings`
+- **충전 상태 조회:** `GET /api/status/charging`
+- **문, 창문, 선루프 상태 조회:** `GET /api/status/doors-windows`
+
+ ⚠️ 모든 api의 응답(body)는 siri가 읽을 문자열을 리턴합니다.
 
 ## 설치 및 실행 방법
 
@@ -81,7 +85,7 @@ formatter=logformatter
 git clone https://github.com/small-goliath/BMW-connected-drive.git
 cd BMW-connected-drive
 python -m venv .venv
-source .venv/bin/activate  # Windows의 경우 `venv\Scripts\activate`
+source .venv/bin/activate  # Windows의 경우 `.venv\Scripts\activate`
 pip install -r requirements.txt
 ```
 
