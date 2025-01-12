@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 import logging
 
+from bimmer_connected.models import MyBMWAuthError
 from fastapi import FastAPI, Response, Request
 from fastapi.routing import APIRoute
 from starlette.background import BackgroundTask
@@ -20,7 +21,11 @@ async def lifespan(app: FastAPI):
     global vehicle
     logging.info("Starting up...")
 
-    await initialize_vehicle()
+    try:
+        await initialize_vehicle()
+    except MyBMWAuthError as e:
+        logging.error(f"Failed to initialize vehicle: {e}")
+        raise RuntimeError("Failed to initialize vehicle")
 
     yield
 
