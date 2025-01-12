@@ -48,7 +48,7 @@ async def lock_the_door() -> str:
     doors_status = bmw_account.vehicle.doors_and_windows.door_lock_state
     doors_status = doorsStatusMap.get(doors_status, "문의 상태를 알 수 없어.")
 
-    is_close_windows = await bmw_account.vehicle.doors_and_windows.all_windows_closed()
+    is_close_windows = bmw_account.vehicle.doors_and_windows.all_windows_closed()
     windows_status = "창문과 선루프가 닫혀있고" if is_close_windows else "창문 혹은 선루프가 열려있고"
 
     return f"{windows_status} 차량의 {doors_status}"
