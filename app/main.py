@@ -5,7 +5,6 @@ from bimmer_connected.models import MyBMWAuthError
 from fastapi import FastAPI, Response, Request
 from fastapi.routing import APIRoute
 from starlette.background import BackgroundTask
-from starlette.middleware.cors import CORSMiddleware
 from starlette.types import Message
 from app.bmw_account import initialize_vehicle
 from app.apis.main import api_router
