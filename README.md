@@ -27,12 +27,14 @@
 `.env` 파일에 아래 내용을 추가해야 합니다:
 
 ```
+PROJECT_NAME=your_service_title
 CAPCHA_TOKEN=your_captcha_token
 USERNAME=your_bmw_username
 PASSWORD=your_bmw_password
 VIN_NUMBER=your_vehicle_vin
 ```
 
+- **PROJECT_NAME**: 서버 이름
 - **CAPCHA_TOKEN**: [CAPTCHA 토큰 생성 방법](https://bimmer-connected.readthedocs.io/en/stable/captcha.html) 참조
 - **USERNAME**: mybmw 앱 계정 사용자명
 - **PASSWORD**: mybmw 앱 계정 비밀번호
