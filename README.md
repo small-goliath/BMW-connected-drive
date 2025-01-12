@@ -13,6 +13,7 @@
 - **에어컨 끄기:** `DELETE /api/remote-control/air-conditioning`
 - **충전 시작:** `POST /api/remote-control/charging`
 - **충전 정지:** `DELETE /api/remote-control/charging`
+- **목표 충전량(%):** `PATCH /api/remote-control/charging-settings`
 
 ## 설치 및 실행 방법
 

@@ -68,3 +68,12 @@ async def stop_charging() -> str:
         return str(result.details.get('eventStatus')).strip('"')
     except MyBMWRemoteServiceError as e:
         return "bmw에서 요청을 받지 않아."
+    
+@router.patch("/charging-settings", response_model = str)
+async def stop_charging(target_soc: int) -> str:
+    try:
+        result = await bmw_account.vehicle.remote_services.trigger_charging_settings_update(target_soc=target_soc)
+        logging.debug(f"result: {result.details}")
+        return str(result.details.get('eventStatus')).strip('"')
+    except MyBMWRemoteServiceError as e:
+        return "bmw에서 요청을 받지 않아."
