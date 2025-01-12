@@ -33,7 +33,7 @@ doorsStatusMap = {
 async def lock_the_door() -> str:
     await bmw_account.vehicle.get_vehicle_state()
 
-    status = await bmw_account.vehicle.fuel_and_battery.charging_status
+    status = bmw_account.vehicle.fuel_and_battery.charging_status
     status = chargingStatusMap.get(status, "알 수 없어.")
 
     target_percent = bmw_account.vehicle.fuel_and_battery.charging_target
@@ -45,7 +45,7 @@ async def lock_the_door() -> str:
 async def lock_the_door() -> str:
     await bmw_account.vehicle.get_vehicle_state()
 
-    doors_status = await bmw_account.vehicle.doors_and_windows.door_lock_state
+    doors_status = bmw_account.vehicle.doors_and_windows.door_lock_state
     doors_status = doorsStatusMap.get(doors_status, "문의 상태를 알 수 없어.")
 
     is_close_windows = await bmw_account.vehicle.doors_and_windows.all_windows_closed()
