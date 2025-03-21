@@ -13,6 +13,7 @@
 - **에어컨 끄기:** `DELETE /api/remote-control/air-conditioning`
 - **충전 시작:** `POST /api/remote-control/charging`
 - **충전 정지:** `DELETE /api/remote-control/charging`
+- **즐겨찾기 등록된 목적지 네비게이션:** `GET /api/status/doors-windows`
 - **목표 충전량(%):** `PATCH /api/remote-control/charging-settings`
 - **충전 상태 조회:** `GET /api/status/charging`
 - **문, 창문, 선루프 상태 조회:** `GET /api/status/doors-windows`
