@@ -14,7 +14,7 @@
 - **충전 시작:** `POST /api/remote-control/charging`
 - **충전 정지:** `DELETE /api/remote-control/charging`
 - **목표 충전량(%):** `PATCH /api/remote-control/charging-settings`
-- **즐겨찾기 등록된 목적지 네비게이션:** `POST /api/remote-control/poi`
+- **목적지 네비게이션:** `POST /api/remote-control/poi`
 
 - **충전 상태 조회:** `GET /api/status/charging`
 - **문, 창문, 선루프 상태 조회:** `GET /api/status/doors-windows`

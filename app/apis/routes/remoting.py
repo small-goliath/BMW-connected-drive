@@ -50,7 +50,7 @@ async def update_charging_settings(target_soc: int) -> str:
     )
 
 @router.post("/poi", response_model=str)
-async def update_charging_settings(target: str) -> str:
+async def update_charging_settings(lat: float, lon: float) -> str:
     return await handle_remote_service(
-        lambda: bmw_account.vehicle.remote_services.trigger_send_poi({"name": target})
+        lambda: bmw_account.vehicle.remote_services.trigger_send_poi({"lat": lat, "lon": lon})
     )
